@@ -310,6 +310,11 @@ class BlogModel extends CI_Model
 	}
 	public function posts($credentials)
 	{
+		$data['post']['full']=0;
+		$this->db->select('*');
+		$this->db->from('bpost');
+		$query1=$this->db->get();
+		$total=$query1->num_rows();
 		$this->db->select('bpost.id as postId,
 							user.id as userId,
 							name as userName,
@@ -323,6 +328,10 @@ class BlogModel extends CI_Model
 		$this->db->from('bpost');
     	$this->db->order_by("date", "DESC");
     	$query=$this->db->get();
+    	if($total<=$credentials['limit'])
+    	{
+    		$data['post']['full']=1;
+    	}
     	$i=1;
     	foreach ($query->result() as $row)
 		{

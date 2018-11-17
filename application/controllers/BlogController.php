@@ -235,7 +235,29 @@
 		$this->session->unset_userdata('name');
 		redirect('user/login');
 	}
-
+	public function home1()
+	{
+		$data['prev']=$this->uri->segment(2);
+		if($data['prev']==1)
+		{
+			redirect('Home');
+		}
+		else
+		{
+			$data['next']=$data['prev']+1;
+			$data['start']=($data['prev']-1)*10+1;
+			$data['limit']=$data['prev']*10;
+			$data1=$this->BlogModel->posts($data);
+			$data2=$this->BlogModel->topPosts();
+			$data3=$this->BlogModel->recentPosts();
+			$this->load->helper(array('url'));
+        	$data['url']=$this->config->base_url();
+        	$data['prev']=$data['prev']-1;
+        	$data=$data+$data1+$data2+$data3;
+			$this->load->view('home',$data);
+		}
+		
+	}
 	public function home()
 	{
 		$data['prev']=1;

@@ -51,15 +51,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['user/user-list'] = 'BlogController/showUserList';
 $route['user/dashboard'] = 'BlogController/dashboardUser';
-$route['user/get-json'] = 'BillingController/sendJson';
-$route['user/details-bill'] = 'BillingController/uploadBill';
-$route['user/template'] = 'BillingController/uploadTemplate';
 $route['user/login'] = 'BlogController/login';
 $route['user/create'] = 'BlogController/CreateUser';
 $route['user/delete/(:any)'] = 'BlogController/deleteUser';
 $route['user/category/delete/(:any)'] = 'BlogController/deleteCategory';
 $route['user/logout'] = 'BlogController/doLogout';
 $route['Billing'] = 'bill/showBill';
+$route['Home/(:any)'] = 'BlogController/home1';
 $route['Home'] = 'BlogController/home';
 $route['Faculty'] = 'BlogController/faculty';
 $route['Contact'] = 'BlogController/contact';

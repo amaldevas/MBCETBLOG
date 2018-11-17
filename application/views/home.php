@@ -446,12 +446,26 @@ video {
       
 </div>
 <div class='blog-pager' id='blog-pager'>
+  <span id='blog-pager-older-link'>
+    <?php
+    if($post['full']==1)
+    {
+        echo "
+            <a class='blog-pager-older-link nextbut' href='".base_url()."index.php/Home/".$next."' id='Blog1_blog-pager-older-link' title='Newer Posts'>Newer Posts</a>
+           ";
+    }
+    else
+    {
+      echo "
+            <a class='blog-pager-older-link' href='".base_url()."index.php/Home/".$next."' id='Blog1_blog-pager-older-link' title='Newer Posts'>Newer Posts</a>
+           ";
+    }
+    ?>
+</span>
 <span id='blog-pager-newer-link'>
-<a class='blog-pager-newer-link' href='<?php echo base_url();?>assets/index.html' id='Blog1_blog-pager-newer-link' title='Newer Posts'>Newer Posts</a>
+<a class='blog-pager-newer-link' href='<?php echo base_url()."index.php/Home/".$prev;?>' id='Blog1_blog-pager-newer-link' title='Older Posts'>Older Posts</a>
 </span>
-<span id='blog-pager-older-link'>
-<a class='blog-pager-older-link' href='<?php echo base_url();?>assets/searchf81a.html?updated-max=2017-11-05T01:08:00-08:00&amp;max-results=20&amp;start=20&amp;by-date=false' id='Blog1_blog-pager-older-link' title='Older Posts'>Older Posts</a>
-</span>
+
 </div>
 <div class='clear'></div>
 <div class='blog-feeds'>
@@ -553,56 +567,6 @@ video {
 
 </div>
 </div>
-<div class="modal fade login" id="loginModal">
-		      <div class="modal-dialog login animated">
-    		      <div class="modal-content">
-    		         <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Login</h4>
-                    </div>
-                    <div class="modal-body">  
-                        <div class="box">
-                             <div class="content">
-                                
-                               
-                                <div class="error"></div>
-                                <div class="form loginBox">
-                                    <form method="post" action="/login" accept-charset="UTF-8">
-                                    <input id="email" class="form-control" type="text" placeholder="Email" name="email">
-                                    <input id="password" class="form-control" type="password" placeholder="Password" name="password">
-                                    <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
-                                    </form>
-                                </div>
-                             </div>
-                        </div>
-                        <div class="box">
-                            <div class="content registerBox" style="display:none;">
-                             <div class="form">
-                                <form method="post" html="{:multipart=>true}" data-remote="true" action="/register" accept-charset="UTF-8">
-                                <input id="email" class="form-control" type="text" placeholder="Email" name="email">
-                                <input id="fullname" class="form-control" type="text" placeholder="Fullname" name="fullname">
-                                <input id="password" class="form-control" type="password" placeholder="Password" name="password">
-                                <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
-                                <input class="btn btn-default btn-register" type="submit" value="Create account" name="commit">
-                                </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="forgot login-footer">
-                            <span>Looking to 
-                                 <a href="javascript: showRegisterForm();">create an account</a>
-                            ?</span>
-                        </div>
-                        <div class="forgot register-footer" style="display:none">
-                             <span>Already have an account?</span>
-                             <a href="javascript: showLoginForm();">Login</a>
-                        </div>
-                    </div>        
-    		      </div>
-		      </div>
-		  </div>
 </div>
 <script async='async' type='text/javascript'>
 var $ = jQuery;
@@ -668,6 +632,13 @@ article {
   /*]]>*/
 </script>
  <script src="<?php echo base_url();?>assets/js/video.js"></script>
+ <script>
+$(document).ready(function(){
+    $(".nextbut").click(function(event){
+        event.preventDefault();
+    });
+});
+</script>
 
 </body>
 
