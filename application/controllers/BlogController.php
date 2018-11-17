@@ -94,7 +94,8 @@
 	}
 	public function faculty()
 	{
-		$this->load->view('faculty');
+		$credentials=$this->BlogModel->getFaculty();
+		$this->load->view('faculty',$credentials);
 	}
 	public function isLoggedInPost()
 	{

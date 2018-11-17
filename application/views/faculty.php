@@ -37,6 +37,20 @@
 <meta content='' property='og:description'/>
 
 <link href="<?php echo base_url();?>assets/css/blogHome.css" rel="stylesheet" />
+<style type="text/css" media="screen">
+  .fimage
+  {
+    min-width: 252.5px;
+    max-width: 252.5px;
+    min-height: 295px;
+    max-height: 295px;
+  }
+  .fdesgn
+  {
+    min-height: 156.6px;
+    max-height: 156.6px;
+  }
+</style>
 <style id='page-skin-1' type='text/css'>
 
 
@@ -309,19 +323,30 @@ video {
             <div class="row team-3 team-3-4Col">
               <div class=""> 
                 <!--Staff 1-->
-                <div class="col-sm-3">
-                  <div class="item img-hover-1">
-                    <figure> <img alt="img" src="<?php echo base_url();?>assets/images/team/staff-11.jpg" />
-                      <figcaption> <a class="plus html-popup" href="#member-1"> <span class="icon ion-ios-plus-empty"></span> </a> </figcaption>
+                <?php
+                    if(!empty($faculty))
+                    {
+                      for($i=0;$i<$faculty['total'];$i++)
+                      {
+                        echo "
+                              <div class='col-sm-3'>
+                  <div class='item img-hover-1'>
+                    <figure> <img class='fimage' alt='img' src='".base_url()."assets/faculty/".$faculty[$i]['image']."' />
+                      <figcaption> <a class='plus html-popup' href='#member-".$faculty[$i]['id']."'> <span class='icon ion-ios-plus-empty'></span> </a> </figcaption>
                     </figure>
-                    <div class="team-profile-3 bg-none">
+                    <div class='team-profile-3 bg-none fdesgn'>
                       <div>
-                        <h5 class="text-uppercase">Michael Bond</h5>
-                        <p>Art Director</p>
+                        <h5 class='text-uppercase'>".$faculty[$i]['name']."</h5>
+                        <p>".$faculty[$i]['designation']."</p>
                       </div>
                     </div>
                   </div>
                 </div>
+                            ";
+                      }
+                    }
+                ?>
+                
                 <!--/ Staff 1--> 
                 
               </div>
@@ -339,50 +364,41 @@ video {
 </div>
 </div>
 </div>
-<div id="member-1" class="container mfp-hide">
-  <div class="row">
-    <div class="member-details col-lg-10 col-lg-offset-1">
-      <div class="row">
-        <button title="Close (Esc)" type="button" class="mfp-close">x</button>
-        <div class="col-md-5 col-lg-5 no-padding"> <img class="img-responsive" src="images/team/staff-11.jpg" alt="" /> </div>
-        <div class="col-md-7 col-lg-7 padd25">
-          <h3 class="text-uppercase">MICHAEL BOND</h3>
-          <p class="lead">Art Director</p>
-          <ul class="socials-connect">
-            <li><a title="" href="#" class="page_social"><i class="fa fa-twitter"></i></a></li>
-            <li><a title="" href="#" class="page_social"><i class="fa fa-envelope"></i></a></li>
-          </ul>
-          <div class="content">
-            <p>Aliquam lorem ligula, lacinia nec aliquam et, elementum accumsan dui. Nam id hendrerit neque, nec egestas enim. Sed rhoncus porta sapien ac viverra. nec egestas enim. Sed rhoncus porta sapien ac viverra nec egestas enim. Sed rhoncus porta sapien ac viverra</p>
-            
+<?php
+                    if(!empty($faculty))
+                    {
+                      for($i=0;$i<$faculty['total'];$i++)
+                      {
+                        echo "
+                         <div id='member-".$faculty[$i]['id']."' class='container mfp-hide'>
+  <div class='row'>
+    <div class='member-details col-lg-10 col-lg-offset-1'>
+      <div class='row'>
+        <button title='Close (Esc)' type='button' class='mfp-close'>x</button>
+        <div class='col-md-5 col-lg-5 no-padding'> <img class='img-responsive' src='".base_url()."assets/faculty/".$faculty[$i]['image']."' alt='' /> </div>
+        <div class='col-md-7 col-lg-7 padd25'>
+          <h3 class='text-uppercase'>".$faculty[$i]['name']."</h3>
+          <p class='lead'>".$faculty[$i]['designation']."</p>
+          <div class='content'>
             <!--Progress bar-->
-            <div class="progress-wrapper">
-              <h5>I AM GOOD AT</h5>
-              <div class="skills marT50">
-                <ul class="skill-bar">
-                  <li class="active progress col-md-5">
-                    <div class="skill-bar-wrap">
-                      <div data-width="80" class="progress-bar text-uppercase" data-name="Branding"></div>
-                    </div>
-                  </li>
-                  <li class="active progress col-md-5">
-                    <div class="skill-bar-wrap">
-                      <div data-width="92" class="progress-bar text-uppercase" data-name="Web Design"></div>
-                    </div>
-                  </li>
-                  <li class="active progress col-md-5">
-                    <div class="skill-bar-wrap">
-                      <div data-width="89" class="progress-bar text-uppercase" data-name="Graphic Design"> </div>
-                    </div>
-                  </li>
-                  <li class="active progress col-md-5">
-                    <div class="skill-bar-wrap">
-                      <div data-width="75" class="progress-bar text-uppercase" data-name="Logo Design"> </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            
+              <h5>Qualification</h5>
+              <p>
+              ".$faculty[$i]['qualification']."
+              </p>
+              <h5>Area Of Interest</h5>
+              <p>
+              ".$faculty[$i]['area']."
+              </p>
+              <h5>Email</h5>
+              <p>
+              ".$faculty[$i]['email']."
+              </p>
+              <h5>Contact Number</h5>
+              <p>
+              ".$faculty[$i]['phoneno']."
+              </p>
+            
             
             <!--/ Progress bar--> 
           </div>
@@ -391,6 +407,11 @@ video {
     </div>
   </div>
 </div>
+                            ";
+                      }
+                    }
+                ?>
+
 
 <script async='async' type='text/javascript'>
 var $ = jQuery;

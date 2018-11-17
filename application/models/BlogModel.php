@@ -31,6 +31,38 @@ class BlogModel extends CI_Model
 		$this->db->delete('user');
 
 	}
+	public function getFaculty()
+	{
+			$this->db->select('id,
+								designation,
+								email,
+								phoneno,
+								image,
+								name,
+								date,
+								qualification,
+								userId,
+								area
+								');
+			$query=$this->db->get('faculty');
+			$i=0;
+		foreach ($query->result() as $row)
+		{
+        	$data['faculty'][$i]['userId']=$row->userId;
+        	$data['faculty'][$i]['email']=$row->email;
+        	$data['faculty'][$i]['name']=$row->name;
+        	$data['faculty'][$i]['date']=$row->date;
+        	$data['faculty'][$i]['qualification']=$row->qualification;
+        	$data['faculty'][$i]['designation']=$row->designation;
+        	$data['faculty'][$i]['area']=$row->area;
+        	$data['faculty'][$i]['image']=$row->image;
+        	$data['faculty'][$i]['phoneno']=$row->phoneno;
+        	$data['faculty'][$i]['id']=$row->id;
+        	$i++;
+        }
+        $data['faculty']['total']=$i;
+        return $data;
+	}
 	public function userList()
 	{
 			$this->db->select('id as userId,

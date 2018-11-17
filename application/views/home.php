@@ -195,8 +195,7 @@ video {
 	</style>
 <link href="<?php echo base_url();?>assets/css/12345.css" rel="stylesheet">
 
-  <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
-  <script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>
+  
 </head>
 <body id="page" data-spy="scroll" data-target=".navbar-nav" data-offset="80" class="appear-animate bg123">
 <!-- Preloader
@@ -668,7 +667,7 @@ article {
     var home_page="index.html";
   /*]]>*/
 </script>
- <script src="https://vjs.zencdn.net/7.1.0/video.js"></script>
+ <script src="<?php echo base_url();?>assets/js/video.js"></script>
 
 </body>
 
